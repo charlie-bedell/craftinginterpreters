@@ -1,4 +1,4 @@
-package com.lox.jlox;
+package java.com.jlox.lox;
 
 class Token {
 		final TokenType type;

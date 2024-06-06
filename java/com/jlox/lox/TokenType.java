@@ -1,4 +1,4 @@
-package com.jlox.lox;
+package java.com.jlox.lox;
 
 enum TokenType {
 		// Single-character tokens
@@ -21,8 +21,8 @@ enum TokenType {
 		EQUAL_EQUAL,
 		GREATER,
 		GREATER_EQUAL,
-		LESSER,
-		LESSER_EQUAL,
+		LESS,
+		LESS_EQUAL,
 
 		// Literals
 		INDENTIFIER,
