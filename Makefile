@@ -1,12 +1,13 @@
 # Variables
 JAVAC = javac
 JAVA = java
-SRC_DIR = java/com/jlox/lox
+SRC_DIR = src
+PKG_DIR = src/com/jlox/lox
 BIN_DIR = bin
-MAIN_CLASS = com.jlox.lox
+MAIN_CLASS = com.jlox.lox.Lox
 
-# Find all .java files in the SRC_DIR
-SOURCES := $(shell find $(SRC_DIR) -name '*.java')
+# Find all .java files in the PKG_DIR
+SOURCES := $(shell find $(PKG_DIR) -name '*.java')
 
 # Create a list of corresponding .class files in the BIN_DIR
 CLASSES := $(SOURCES:$(SRC_DIR)/%.java=$(BIN_DIR)/%.class)
