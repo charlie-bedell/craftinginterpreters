@@ -82,6 +82,8 @@ class Scanner {
 						if (match('/')) {
 								// A comment goes until the end of the line.
 								while (peek() != '\n' && !isAtEnd()) advance();
+						} else if (match('*')) {
+								multiLineComment();
 						} else {
 								addToken(SLASH);
 						}
@@ -147,7 +149,26 @@ class Scanner {
 				// Trim surrounding quotes.
 				String value = source.substring(start + 1, current - 1);
 				addToken(STRING, value);
-		}		
+		}
+
+		private void multiLineComment() {
+				int multiLineCommentDepth = 1;
+				while (multiLineCommentDepth > 0 && !isAtEnd()) {
+						if (peek() == '\n') {
+								line++;
+						} else if ((peek() == '/') && (peekNext() == '*')) {
+								multiLineCommentDepth++;
+						} else if ((peek() == '*') && (peekNext() == '/')) {
+								multiLineCommentDepth--;
+						}
+						if (isAtEnd()) {
+								Lox.error(line, "unterminated comment");
+								return;
+						}
+						advance();
+				}
+				advance();
+		}
 
 		private boolean match(char expected) {
 				if (isAtEnd()) return false;

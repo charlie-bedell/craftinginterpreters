@@ -23,6 +23,7 @@ enum TokenType {
 		GREATER_EQUAL,
 		LESS,
 		LESS_EQUAL,
+		MULTILINE_COMMENT,
 
 		// Literals
 		INDENTIFIER,
