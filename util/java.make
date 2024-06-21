@@ -3,7 +3,7 @@
 
 BUILD_DIR := build
 
-SOURCES := $(wildcard $(DIR)/com/jlox/$(PACKAGE)/*.java)
+SOURCES := $(wildcard $(DIR)/com/craftinginterpreters/$(PACKAGE)/*.java)
 CLASSES := $(addprefix $(BUILD_DIR)/, $(SOURCES:.java=.class))
 
 JAVA_OPTIONS := -Werror
