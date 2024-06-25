@@ -27,8 +27,8 @@ abstract class Expr {
     final Expr right;
   }
  static class Grouping extends Expr {
-    Grouping(Expr xxpression) {
-        this.xxpression = xxpression;
+    Grouping(Expr expression) {
+        this.expression = expression;
     }
 
     @Override
@@ -36,7 +36,7 @@ abstract class Expr {
       return visitor.visitGroupingExpr(this);
     }
 
-    final Expr xxpression;
+    final Expr expression;
   }
  static class Literal extends Expr {
     Literal(Object value) {
