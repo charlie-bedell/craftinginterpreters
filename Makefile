@@ -23,15 +23,15 @@ cpplox:
 # Compile and run the AST generator.
 generate_ast:
 	@ $(MAKE) -f util/java.make DIR=java PACKAGE=tool
-	@ java -cp build/java com.craftinginterpreters.tool.GenerateAst \
+	@ java -cp build/java src.com.craftinginterpreters.tool.GenerateAst \
 			src/com/craftinginterpreters/lox
 
 # Compile the Java interpreter .java files to .class files.
 jlox: generate_ast
-	@ $(MAKE) -f util/java.make DIR=java PACKAGE=lox
+	@ $(MAKE) -f util/java.make DIR=src PACKAGE=lox
 
 run_generate_ast = @ java -cp build/gen/$(1) \
-			com.craftinginterpreters.tool.GenerateAst \
+			src.com.craftinginterpreters.tool.GenerateAst \
 			gen/$(1)/com/craftinginterpreters/lox
 
 .PHONY: clean clox debug default diffs jlox
