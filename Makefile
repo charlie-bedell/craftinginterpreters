@@ -24,7 +24,7 @@ cpplox:
 generate_ast:
 	@ $(MAKE) -f util/java.make DIR=java PACKAGE=tool
 	@ java -cp build/java com.craftinginterpreters.tool.GenerateAst \
-			java/com/craftinginterpreters/lox
+			src/com/craftinginterpreters/lox
 
 # Compile the Java interpreter .java files to .class files.
 jlox: generate_ast

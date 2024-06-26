@@ -3,7 +3,6 @@ package com.craftinginterpreters.lox;
 class AstPrinter implements Expr.Visitor<String> {
 
 		String print(Expr expr) {
-				System.out.println(this);
 				return expr.accept(this);
 		}
 
