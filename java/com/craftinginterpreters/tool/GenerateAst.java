@@ -1,4 +1,4 @@
-package src.com.craftinginterpreters.tool;
+package com.craftinginterpreters.tool;
 
 
 import java.io.IOException;
