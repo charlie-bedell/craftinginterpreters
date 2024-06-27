@@ -22,7 +22,7 @@ cpplox:
 
 # Compile and run the AST generator.
 generate_ast:
-	@ $(MAKE) -f util/java.make DIR=java PACKAGE=tool
+	@ $(MAKE) -f util/java.make DIR=src PACKAGE=tool
 	@ java -cp build/java src.com.craftinginterpreters.tool.GenerateAst \
 			src/com/craftinginterpreters/lox
 
