@@ -72,12 +72,16 @@ class Scanner {
 				case '*': addToken(STAR); break;
 				case '!':
 						addToken(match('=') ? BANG_EQUAL : BANG);
+						break;
 				case '=':
 						addToken(match('=') ? EQUAL_EQUAL : EQUAL);
+						break;
 				case '<':
 						addToken(match('=') ? LESS_EQUAL : LESS);
+						break;
 				case '>':
 						addToken(match('=') ? GREATER_EQUAL : GREATER);
+						break;
 				case '/':
 						if (match('/')) {
 								// A comment goes until the end of the line.
@@ -88,9 +92,8 @@ class Scanner {
 								addToken(SLASH);
 						}
 						break;
-
-				case ' ':
-				case '\t':
+				case ' ':  // fall through
+				case '\t': // fall through
 				case '\r':
 						break;
 				case '\n':
