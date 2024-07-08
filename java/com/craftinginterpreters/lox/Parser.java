@@ -92,6 +92,10 @@ class Parser {
 						return new Expr.Literal(previous().literal);
 				}
 
+				if (match(IDENTIFIER)) {
+						return new Expr.Variable(previous());
+				}
+
 				if (match(LEFT_PAREN)) {
 						Expr expr = expression();
 						consume(RIGHT_PAREN, "Expect ')' after expression.");
@@ -151,9 +155,15 @@ class Parser {
 						if (previous().type == SEMICOLON) return;
 
 						switch (peek().type) {
-						case CLASS: case FOR: case FUN: case IF: case PRINT:
-						case RETURN: case VAR: case WHILE:
-								return;
+						case CLASS:
+						case FOR:
+						case FUN:
+						case IF:
+						case PRINT:
+						case RETURN:
+						case VAR:
+						case WHILE:
+							return;
 						}
 				}
 		}
