@@ -26,7 +26,7 @@ enum TokenType {
 		MULTILINE_COMMENT,
 
 		// Literals
-		INDENTIFIER,
+		IDENTIFIER,
 		STRING,
 		NUMBER,
 
