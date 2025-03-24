@@ -6,7 +6,7 @@
 # how to run java files
 - after class files have been built, you can run an individual class file that
   contains a `main()` function like so:
-  `java -cp build/java/ com.craftinginterpreters.lox.AstPrinter`
+  `java -cp build/java/ com.craftinginterpreters.lox.Lox`
 
 # what is .dir-locals.el?
 `.dir-locals.el` is used to set a directory-specific configuration in Emacs.
