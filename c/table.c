@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 #include "memory.h"
 #include "object.h"
@@ -74,11 +75,9 @@ bool tableSet(Table* table, ObjString* key, Value value) {
 		int capacity = GROW_CAPACITY(table->capacity);
 		adjustCapacity(table, capacity);
 	}
-
 	Entry* entry = findEntry(table->entries, table->capacity, key);
 	bool isNewKey = entry->key == NULL;
 	if (isNewKey && IS_NIL(entry->value)) table->count++;
-
 	entry->key = key;
 	entry->value = value;
 	return isNewKey;
