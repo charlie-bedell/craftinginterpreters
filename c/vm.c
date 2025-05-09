@@ -77,6 +77,8 @@ static void concatenate() {
 static InterpretResult run() {
 #define READ_BYTE() (*vm.ip++)
 #define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()])
+#define READ_SHORT() \
+	(vm.ip += 2, (uint16_t)((vm.ip[-2] << 8) | vm.ip[-1]))
 #define READ_STRING() AS_STRING(READ_CONSTANT())
 #define BINARY_OP(valueType, op) \
 	do { \
@@ -172,20 +174,38 @@ for (;;) {
 	case OP_SUBTRACT: BINARY_OP(NUMBER_VAL, -); break;
 	case OP_MULTIPLY: BINARY_OP(NUMBER_VAL, *); break;
 	case OP_DIVIDE:   BINARY_OP(NUMBER_VAL, /); break;
-	case OP_NOT:
+	case OP_NOT: {
 		push(BOOL_VAL(isFalsey(pop())));
 		break;
-	case OP_NEGATE:
+	}
+	case OP_NEGATE: {
 		if (!IS_NUMBER(peek(0))) {
 			runtimeError("Operand must be a number.");
 			return INTERPRET_RUNTIME_ERROR;
 		}
 		push(NUMBER_VAL(-AS_NUMBER(pop())));
 		break;
-	case OP_PRINT:
+	}
+	case OP_PRINT: {
 		printValue(pop());
 		printf("\n");
 		break;
+	}
+	case OP_JUMP: {
+		uint16_t offset = READ_SHORT();
+		vm.ip += offset;
+		break;
+	}
+	case OP_JUMP_IF_FALSE: {
+		uint16_t offset = READ_SHORT();
+		if (isFalsey(peek(0))) vm.ip += offset;
+		break;
+	}
+	case OP_LOOP: {
+		uint16_t offset = READ_SHORT();
+		vm.ip -= offset;
+		break;
+	}
 	case OP_RETURN: {
 		// exit interpreter
 		return INTERPRET_OK;
@@ -196,6 +216,7 @@ for (;;) {
 
 #undef READ_BYTE
 #undef READ_CONSTANT
+#undef READ_SHORT
 #undef READ_STRING
 #undef BINARY_OP
 }
